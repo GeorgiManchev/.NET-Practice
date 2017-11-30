@@ -3,23 +3,23 @@
     public class Display
     {
         private readonly double size;
-        private readonly uint colorsRange;
+        private readonly int colors;
 
-        public Display(double sizeInch, uint colorsRange)
+        public Display(double size, int colors)
         {
-            Validation.IsIntMoreThanZero(sizeInch);
-            this.size = sizeInch;
-            Validation.IsIntMoreThanZero(colorsRange);
-            this.colorsRange = colorsRange;
+            Validation.IsIntMoreThanZero(size);
+            this.size = size;
+            Validation.IsIntMoreThanZero(colors);
+            this.colors = colors;
         }
 
-        public double Size { get; }
+        public double Size { get => this.size; }
 
-        public uint ColorRange { get; }
+        public int Colors { get => this.colors; }
 
         public override string ToString()
         {
-            return "Size In Inches: " + size + "\nColorRange:" + colorsRange + "Milions";
+            return $"Size: {this.size} inches\nColors: {this.colors} milions";
         }
     }
 }

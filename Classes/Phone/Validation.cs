@@ -4,44 +4,54 @@ namespace Phone
 {
     public static class Validation
     {
-        public static void StringValidation(string toValid)
+        public static string StringValidation(this string text)
         {
-            if (toValid == null)
+            if (text == null)
             {
-                throw new ArgumentNullException("String is Null");
+                throw new ArgumentNullException("Text must have a value");
             }
+
+            return text;
         }
 
-        public static void IsIntMoreThanZero(double number)
+        public static double IsPositive(this double num)
         {
-            if (number <= 0)
+            if (num <= 0)
             {
-                throw new ArgumentOutOfRangeException("Number is less or equals zero");
+                throw new ArgumentOutOfRangeException("Number must be positive");
             }
+
+            return num;
         }
 
-        public static void IsIntMoreThanZero(int number)
+        public static int IsPositive(this int num)
         {
-            if (number <= 0)
+            if (num <= 0)
             {
-                throw new ArgumentOutOfRangeException("Number is less or equals zero");
+                throw new ArgumentOutOfRangeException("Number must be positive");
             }
+
+            return num;
         }
 
-        public static void IsIntLessThanZero(double price)
+        public static double IsNegative(this double num)
         {
-            if (price < 0)
+            if (num >= 0)
             {
-                throw new ArgumentOutOfRangeException("Number is less than zero");
+                throw new ArgumentOutOfRangeException("Number must be negative");
             }
+
+            return num;
         }
 
-        public static void IsIntLessThanZero(int number)
+        public static int IsNegative(this int num)
         {
-            if (number <= 0)
+            if (num >= 0)
             {
-                throw new ArgumentOutOfRangeException("Number is less or equals zero");
+                throw new ArgumentOutOfRangeException("Number must be negative");
             }
+            
+            return num;
         }
     }
 }

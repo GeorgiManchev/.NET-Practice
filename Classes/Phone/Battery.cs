@@ -4,16 +4,8 @@
     {
         private readonly string model;
         private readonly BatteryType batteryType;
-        private int IdleTime { get; set; }
-        private int TalkTime { get; set; }
-
-        public string Model
-        {
-            get
-            {
-                return this.model;
-            }
-        }
+        private readonly int idleTime ;
+        private readonly int talkTime;
 
         public Battery(string model, BatteryType batteryType, int idle = 0, int talk = 0)
         {
@@ -21,14 +13,16 @@
             this.model = model;
             this.batteryType = batteryType;
             Validation.IsIntMoreThanZero(idle);
-            this.IdleTime = idle;
+            this.idleTime = idle;
             Validation.IsIntMoreThanZero(talk);
-            this.TalkTime = talk;
+            this.talkTime = talk;
         }
+
+        public string Model{get => this.model;}
 
         public override string ToString()
         {
-            return "Battery Model: " + this.model + "\nType: " + batteryType + "\nIdleTime: " + IdleTime + "\nTalkTime: " + TalkTime;
+            return $"Battery Model: {this.model}\nType: {this.batteryType}\nIdleTime: {this.idleTime}\nTalkTime: {this.alkTime}";
         }
     }
 }

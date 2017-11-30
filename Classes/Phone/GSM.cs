@@ -4,36 +4,45 @@ namespace Phone
 {
     public class GSM : IModelMadeBy
     {
-        // const GSM IPhone4s = new GSM();
-
         private readonly string model;
-        private readonly string manufacturer;
-        public double Price { get; set; }
-        public string Owner { get; set; }
-        public Battery Battery { get; }
-        public Display Display { get; }
+        private readonly string madeBy;
+        private readonly Battery battery;
+        private readonly Display display;
+        private double price;
+        private string owner;
 
-        public GSM(string model, string manufacturer, double price, string owner, Battery battery, Display display)
+        public GSM(string model, string madeBy, Battery battery, Display display, double price=0, string owner="none")
         {
             Validation.StringValidation(model);
             this.model = model;
-            Validation.StringValidation(manufacturer);
-            this.manufacturer = manufacturer;
-            Validation.IsIntLessThanZero(price);
-            this.Price = price;
-            this.Owner = owner;
+            Validation.StringValidation(madeBy);
+            this.madeBy = madeBy;
             this.Battery = battery;
             this.Display = display;
+
+            this.Price = price;
+            this.Owner = owner;
         }
 
-        public string Model { get; }
-        public string Manufacturer { get; }
+        public double Price 
+        { 
+            get => this.price;
+
+            set 
+            {
+                Validation.IsIntLessThanZero(value);
+                this.price = value;
+            }
+        }
+        public  string Owner { get => this.owner; set; }
+        public string Model { get => this.model; }
+        public string madeBy { get => this.madeBy; }
 
         public void Print(ILogger logger)
         {
-            string message = "Model:" + this.model + "\nMade by: " + this.manufacturer + "\nPrice: " + this.Price + "\nOwner: "
-                + this.Owner + "\n*******\n" + this.Battery + "\n*******\n" + this.Display;
-            logger.Log(message);
+            var msg = $"Model:{this.model}\nMade by: {this.madeBy}\nPrice: {this.price}\nOwner: {this.owner}
+            \n*******\n{this.battery}\n*******\n{this.display}";
+            logger.Log(msg);
         }
     }
 }
